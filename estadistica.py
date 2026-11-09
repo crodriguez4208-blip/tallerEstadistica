@@ -20,3 +20,17 @@ def mediana(datos):
     n = len(ordenados)
     mitad = n // 2
     return ordenados[mitad]
+
+
+def rango(datos):
+    """Diferencia entre el valor máximo y el mínimo."""
+    if len(datos) == 0:
+        raise ValueError("La lista está vacía")
+    return max(datos) - min(datos)
+
+
+def normalizar_min_max(datos):
+    """Escala los datos al intervalo [0, 1]: (x - min) / (max - min)."""
+    minimo = min(datos)
+    maximo = max(datos)
+    return [(x - minimo) / (maximo - minimo) for x in datos]
