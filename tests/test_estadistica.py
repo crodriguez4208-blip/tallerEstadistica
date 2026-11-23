@@ -63,3 +63,7 @@ def test_desviacion_estandar_un_solo_dato_lanza_error():
 def test_desviacion_estandar_lista_vacia_lanza_error():
     with pytest.raises(ValueError):
         desviacion_estandar([])
+
+def test_desviacion_estandar_coincide_con_statistics():
+    d = [1.5, 2.5, 3.5, 10, 12]
+    assert desviacion_estandar(d) == pytest.approx(statistics.stdev(d))
