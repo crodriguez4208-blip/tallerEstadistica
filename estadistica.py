@@ -37,3 +37,9 @@ def normalizar_min_max(datos):
         raise ValueError("No se puede normalizar: todos los valores son iguales")
     return [(x - minimo) / (maximo - minimo) for x in datos]
 
+def porcentaje_faltantes(datos):
+ """Porcentaje (0-100) de valores None en la lista."""
+ if len(datos) ==0:
+     raise ValueError("La lista no puede estar vacia")
+ faltantes = sum(1 for x in datos if x is None)
+ return 100 * faltantes / len(datos)
