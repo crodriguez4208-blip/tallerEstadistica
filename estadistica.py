@@ -36,4 +36,7 @@ def normalizar_min_max(datos):
     """Escala los datos al intervalo [0, 1]: (x - min) / (max - min)."""
     minimo = min(datos)
     maximo = max(datos)
+
+    if maximo == minimo:
+        raise ValueError("No se puede normalizar: todos los valores son iguales")
     return [(x - minimo) / (maximo - minimo) for x in datos]
