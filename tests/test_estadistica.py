@@ -99,4 +99,7 @@ def test_desviacion_estandar_lista_vacia_lanza_error():
 
 
 
+def test_media_con_negativos():
+    assert media([-2, -4, -6]) == -4
+
 
