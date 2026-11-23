@@ -2,7 +2,7 @@ import pytest
 
 import statistics
 
-from estadistica import desviacion_estandar, media, mediana, normalizar_min_max, rango
+from estadistica import desviacion_estandar, media, mediana, normalizar_min_max, porcentaje_faltantes, rango
 
 def test_media_basica():
     assert media([2, 4, 6]) == 4
