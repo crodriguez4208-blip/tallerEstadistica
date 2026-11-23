@@ -46,3 +46,15 @@ def porcentaje_faltantes(datos):
         raise ValueError("La lista está vacía")
     faltantes = sum(1 for x in datos if x is None)
     return 100 * faltantes / len(datos)
+
+
+def desviacion_estandar(datos):
+    """Desviación estándar muestral (divide entre n - 1).
+
+    Requiere al menos dos datos, igual que statistics.stdev.
+    """
+    if len(datos) < 2:
+        raise ValueError("Se necesitan al menos dos datos")
+    promedio = media(datos)
+    suma_cuadrados = sum((x - promedio) ** 2 for x in datos)
+    return (suma_cuadrados / (len(datos) - 1)) ** 0.5
