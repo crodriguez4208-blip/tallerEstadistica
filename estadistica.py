@@ -1,6 +1,5 @@
 """Funciones de estadística descriptiva para el taller de Git + pytest."""
 
-
 def media(datos):
     """Promedio aritmético de una lista de números."""
     if len(datos) == 0:
@@ -29,9 +28,10 @@ def rango(datos):
         raise ValueError("La lista está vacía")
     return max(datos) - min(datos)
 
-
 def normalizar_min_max(datos):
     """Escala los datos al intervalo [0, 1]: (x - min) / (max - min)."""
     minimo = min(datos)
     maximo = max(datos)
+    if minimo == maximo:
+        raise ValueError("No se puede normalizar: todos los valores son iguales")
     return [(x - minimo) / (maximo - minimo) for x in datos]
