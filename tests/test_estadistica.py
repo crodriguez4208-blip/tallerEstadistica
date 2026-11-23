@@ -1,5 +1,6 @@
 import pytest
 import statistics
+
 from estadistica import media, mediana, rango, normalizar_min_max, porcentaje_faltantes, desviacion_estandar
 
 
@@ -95,3 +96,7 @@ def test_desviacion_estandar_un_solo_dato_lanza_error():
 def test_desviacion_estandar_lista_vacia_lanza_error():
     with pytest.raises(ValueError):
         desviacion_estandar([])
+
+
+
+
