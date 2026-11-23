@@ -9,17 +9,16 @@ def media(datos):
 
 
 def mediana(datos):
-    """Valor central de los datos ordenados.
-
-    Si la cantidad de datos es par, la mediana es el promedio
-    de los dos valores centrales.
-    """
+    """Valor central de los datos ordenados."""
     if len(datos) == 0:
         raise ValueError("La lista está vacía")
     ordenados = sorted(datos)
     n = len(ordenados)
     mitad = n // 2
+    if n % 2 == 0:
+        return (ordenados[mitad - 1] + ordenados[mitad]) / 2
     return ordenados[mitad]
+
 
 
 def rango(datos):
