@@ -1,6 +1,6 @@
 import pytest
 
-from estadistica import media, mediana, rango, normalizar_min_max
+from estadistica import media, mediana, rango, normalizar_min_max, porcentaje_faltantes
 
 
 def test_media_basica():
@@ -59,3 +59,17 @@ def test_mediana_varios_casos(datos, esperado):
 def test_normalizar_todos_iguales_lanza_error():
     with pytest.raises(ValueError):
         normalizar_min_max([5, 5, 5])
+
+
+def test_porcentaje_faltantes_mitad():
+    assert porcentaje_faltantes([1, None, 3, None]) == 50.0
+
+
+def test_porcentaje_faltantes_sin_nulos():
+    assert porcentaje_faltantes([1, 2, 3]) == 0.0
+
+
+
+def test_porcentaje_faltantes_lista_vacia_lanza_error():
+    with pytest.raises(ValueError):
+        porcentaje_faltantes([])
