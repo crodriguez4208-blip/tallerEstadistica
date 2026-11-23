@@ -62,3 +62,8 @@ def test_normalizar_lista_vacia_lanza_error():
 ])
 def test_mediana_varios_casos(datos, esperado):
     assert mediana(datos) == esperado
+
+
+def test_normalizar_todos_iguales_lanza_error():
+    with pytest.raises(ValueError):
+        normalizar_min_max([5, 5, 5])
