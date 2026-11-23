@@ -1,6 +1,9 @@
+import statistics
+
 import pytest
 
 from estadistica import (
+    desviacion_estandar,
     media,
     mediana,
     normalizar_min_max,
@@ -86,3 +89,23 @@ def test_porcentaje_faltantes_sin_nulos():
 def test_porcentaje_faltantes_lista_vacia_lanza_error():
     with pytest.raises(ValueError):
         porcentaje_faltantes([])
+
+
+def test_desviacion_estandar_caso_normal():
+    d = [2, 4, 4, 4, 5, 5, 7, 9]
+    assert desviacion_estandar(d) == pytest.approx(statistics.stdev(d))
+
+
+def test_desviacion_estandar_con_decimales_y_negativos():
+    d = [-1.5, 0.0, 2.25, 3.0]
+    assert desviacion_estandar(d) == pytest.approx(statistics.stdev(d))
+
+
+def test_desviacion_estandar_un_solo_dato_lanza_error():
+    with pytest.raises(ValueError):
+        desviacion_estandar([5])
+
+
+def test_desviacion_estandar_lista_vacia_lanza_error():
+    with pytest.raises(ValueError):
+        desviacion_estandar([])
