@@ -23,6 +23,9 @@ def test_media_lista_vacia_lanza_error():
     with pytest.raises(ValueError):
         media([])
 
+def test_media_nums_negativos():
+    assert media([-1, -2, -3]) == -2
+
 # === Mediana ===
 def test_mediana_cantidad_impar():
     assert mediana([3, 1, 2]) == 2
