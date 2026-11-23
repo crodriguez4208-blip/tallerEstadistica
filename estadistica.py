@@ -1,5 +1,5 @@
 """Funciones de estadística descriptiva para el taller de Git + pytest."""
-
+import math
 
 def media(datos):
     """Promedio aritmético de una lista de números."""
@@ -19,6 +19,8 @@ def mediana(datos):
     ordenados = sorted(datos)
     n = len(ordenados)
     mitad = n // 2
+    if n % 2 == 0:
+        return (ordenados[mitad - 1] + ordenados[mitad]) / 2
     return ordenados[mitad]
 
 
@@ -33,4 +35,22 @@ def normalizar_min_max(datos):
     """Escala los datos al intervalo [0, 1]: (x - min) / (max - min)."""
     minimo = min(datos)
     maximo = max(datos)
+
+    if maximo == minimo:
+        raise ValueError('No se puede normalizar: todos los valores son iguales')
     return [(x - minimo) / (maximo - minimo) for x in datos]
+
+def porcentaje_faltantes(datos):
+    """Porcentaje (0-100) de valores None en la lista."""
+    if len(datos) == 0:
+        raise ValueError('La lista está vacía')
+    faltantes = sum(1 for x in datos if x is None)
+    return 100 * faltantes / len(datos)
+
+def desviacion_estandar(datos: list[float]):
+    """Retorna la desviación estándar de los datos"""
+    if len(datos) <=     1:
+        raise ValueError('No se puede hallar la desviación estándar de sus datos')
+    x_bar: float = media(datos)
+    diff: list[float] = [(dato - x_bar) ** 2 for dato in datos]
+    return math.sqrt(sum(diff) / (len(datos) - 1))
