@@ -109,3 +109,7 @@ def test_desviacion_estandar_un_solo_dato_lanza_error():
 def test_desviacion_estandar_lista_vacia_lanza_error():
     with pytest.raises(ValueError):
         desviacion_estandar([])
+
+
+def test_media_con_negativos():
+    assert media([-6, -2, 2]) == -2
