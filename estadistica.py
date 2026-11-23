@@ -57,5 +57,5 @@ def desviacion_estandar(datos):
         raise ValueError("División entre 0")
         
     suma_cuadrados = sum((x - x_b) ** 2 for x in datos)
-    desviacion = math.sqrt(suma_cuadrados / len(datos) - 1)
+    desviacion = math.sqrt(suma_cuadrados / (len(datos) - 1))
     return desviacion
