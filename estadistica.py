@@ -44,7 +44,22 @@ def normalizar_min_max(datos):
 def porcentaje_faltantes(datos):
     """Porcentaje (0-100) de valores None en la lista."""
     if len(datos) == 0:
-            raise ValueError("La lista está vacía")
+        raise ValueError("La lista está vacía")
     
     faltantes = sum(1 for x in datos if x is None)
     return 100 * faltantes / len(datos)
+
+def desviacion_estandar(datos):
+    if len(datos) in [0,1]:
+        raise ValueError("La lista está vacía")
+
+    sumatoria = 0.0
+
+    for dat in datos:
+        diferencia = dat - media(datos)
+        difsq = diferencia**2
+        sumatoria += difsq
+
+    adentro = sumatoria / (len(datos) - 1)
+
+    return adentro ** 0.5
