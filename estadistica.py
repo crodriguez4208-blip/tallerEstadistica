@@ -43,3 +43,15 @@ def porcentaje_faltantes(datos):
      raise ValueError("La lista no puede estar vacia")
  faltantes = sum(1 for x in datos if x is None)
  return 100 * faltantes / len(datos)
+
+def desviacion_estandar(datos):
+    """Calcula la desviación estándar muestral."""
+
+    if len(datos) < 2:
+        raise ValueError("Se necesitan al menos dos datos")
+
+    promedio = sum(datos) / len(datos)
+
+    varianza = sum((x - promedio) ** 2 for x in datos) / (len(datos) - 1)
+
+    return varianza ** 0.5
