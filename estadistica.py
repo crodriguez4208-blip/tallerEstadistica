@@ -19,6 +19,8 @@ def mediana(datos):
     ordenados = sorted(datos)
     n = len(ordenados)
     mitad = n // 2
+    if n % 2 == 0:
+        return (ordenados[mitad - 1] + ordenados[mitad]) / 2
     return ordenados[mitad]
 
 
@@ -33,4 +35,26 @@ def normalizar_min_max(datos):
     """Escala los datos al intervalo [0, 1]: (x - min) / (max - min)."""
     minimo = min(datos)
     maximo = max(datos)
+    if maximo == minimo:
+        raise ValueError("No se puede normalizar: todos los valores son iguales")
     return [(x - minimo) / (maximo - minimo) for x in datos]
+
+
+def porcentaje_faltantes(datos):
+    """Porcentaje (0-100) de valores None en la lista."""
+    if len(datos) == 0:
+        raise ValueError("La lista está vacía")
+    faltantes = sum(1 for x in datos if x is None)
+    return 100 * faltantes / len(datos)
+
+
+def desviacion_estandar(datos):
+    """Desviación estándar muestral (divide entre n - 1).
+
+    Requiere al menos dos datos, igual que statistics.stdev.
+    """
+    if len(datos) < 2:
+        raise ValueError("Se necesitan al menos dos datos")
+    promedio = media(datos)
+    suma_cuadrados = sum((x - promedio) ** 2 for x in datos)
+    return (suma_cuadrados / (len(datos) - 1)) ** 0.5
