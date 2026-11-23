@@ -1,6 +1,7 @@
 import pytest
+import statistics
 
-from estadistica import media, mediana, rango, normalizar_min_max
+from estadistica import media, mediana, rango, normalizar_min_max, desviacion_estandar
 
 
 def test_media_basica():
@@ -14,7 +15,6 @@ def test_media_con_decimales():
 def test_media_lista_vacia_lanza_error():
     with pytest.raises(ValueError):
         media([])
-
 
 def test_mediana_cantidad_impar():
     assert mediana([3, 1, 2]) == 2
@@ -49,3 +49,17 @@ def test_mediana_varios_casos(datos, esperado):
 def test_normalizar_todos_iguales_lanza_error():
     with pytest.raises(ValueError):
         normalizar_min_max([5, 5, 5])
+
+def test_desviacion_estandar_caso_normal():
+    d = [2, 4, 4, 4, 5, 5, 7, 9]
+    assert desviacion_estandar(d) == pytest.approx(2.13809, rel=1e-4)
+
+
+def test_desviacion_estandar_un_solo_dato_lanza_error():
+    with pytest.raises(ValueError):
+        desviacion_estandar([5])
+
+
+def test_desviacion_estandar_lista_vacia_lanza_error():
+    with pytest.raises(ValueError):
+        desviacion_estandar([])

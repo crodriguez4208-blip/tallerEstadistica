@@ -1,5 +1,6 @@
 """Funciones de estadística descriptiva para el taller de Git + pytest."""
 
+import math
 
 def media(datos):
     """Promedio aritmético de una lista de números."""
@@ -38,3 +39,11 @@ def normalizar_min_max(datos):
     if maximo == minimo:
         raise ValueError("No se puede normalizar: todos los valores son equivalentes")
     return [(x - minimo) / (maximo - minimo) for x in datos]
+
+
+def desviacion_estandar(datos):
+    if len(datos) < 2:
+        raise ValueError("Se necesitan al menos 2 datos")
+    m = media(datos)
+    varianza = sum((x - m) ** 2 for x in datos) / (len(datos) - 1)
+    return math.sqrt(varianza)
