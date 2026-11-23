@@ -19,8 +19,9 @@ def mediana(datos):
     ordenados = sorted(datos)
     n = len(ordenados)
     mitad = n // 2
+    if n % 2 == 0:
+        return (ordenados[mitad-1]+ordenados[mitad])/2;
     return ordenados[mitad]
-
 
 def rango(datos):
     """Diferencia entre el valor máximo y el mínimo."""
