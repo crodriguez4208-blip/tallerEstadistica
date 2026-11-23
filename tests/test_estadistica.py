@@ -1,6 +1,7 @@
 import pytest
+import statistics
 
-from estadistica import media, mediana, rango, normalizar_min_max, porcentaje_faltantes
+from estadistica import media, mediana, rango, normalizar_min_max, porcentaje_faltantes, desviacion
 
 def test_media_basica():
     assert media([2, 4, 6]) == 4
@@ -58,3 +59,18 @@ def test_porcentaje_faltantes_lista_vacia_lanza_error():
     with pytest.raises(ValueError):
         porcentaje_faltantes([])
 
+
+eps = 1e-06
+
+def test_deviacion():
+    datos = [2,3,10,30,4]
+    assert abs(desviacion(datos)-11.71324) < eps
+
+def test_desviacion_python_estadistics():
+    datos = [1,2,3,4,5,6,30]
+    assert desviacion(datos) == pytest.approx(statistics.stdev(datos))
+
+def test_deviacion_datos_vacios():
+    datos = []
+    with pytest.raises(ValueError):
+        desviacion(datos)
