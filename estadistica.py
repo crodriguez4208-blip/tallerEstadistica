@@ -1,5 +1,6 @@
 """Funciones de estadística descriptiva para el taller de Git + pytest."""
 
+import math
 
 def media(datos):
     """Promedio aritmético de una lista de números."""
@@ -46,3 +47,15 @@ def porcentaje_faltantes(datos):
     if len(datos) == 0:
         raise ValueError("División entre 0")
     return 100 * faltantes / len(datos)
+
+def desviacion_estandar(datos):
+    x_b = media(datos)
+    if len(datos) < 2:
+        raise ValueError("Se necesitan al menos dos datos para hacer Desviación")
+    
+    if len(datos)==0:
+        raise ValueError("División entre 0")
+        
+    suma_cuadrados = sum((x - x_b) ** 2 for x in datos)
+    desviacion = math.sqrt(suma_cuadrados / len(datos) - 1)
+    return desviacion
